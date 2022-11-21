@@ -27,11 +27,16 @@ struct FeedView: View {
             /// Name of the subreddit.
             VStack {
                 if self.viewModel.isEditingSubredditName == false {
-                    Text(.init("r/\(self.viewModel.subredditName)")).contextMenu {
+                    Text(.init("r/\(self.viewModel.subredditName)")).padding(.all, 8).contentShape(RoundedRectangle(cornerRadius: 8)).contextMenu {
                         Button(action: {
                             self.viewModel.changeSubreddit(name: "SpacePorn")
                         }, label: {
                             Label("r/SpacePorn", systemImage: "moon.stars.fill")
+                        })
+                        Button(action: {
+                            self.viewModel.changeSubreddit(name: "iPhoneWallpapers")
+                        }, label: {
+                            Label("r/iPhoneWallpapers", systemImage: "lock.iphone")
                         })
                         Button(action: {
                             self.viewModel.changeSubreddit(name: "Pic")

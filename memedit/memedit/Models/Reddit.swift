@@ -58,7 +58,7 @@ struct RedditPostData: Codable, Hashable, Identifiable {
     var numComments: Int?
     
     enum CodingKeys: CodingKey {
-        case subreddit, authorFullname, title, subredditNamePrefixed, hidden, name, ups, created, author, thumbnail, url, permalink, isVideo
+        case subreddit, authorFullname, title, subredditNamePrefixed, hidden, name, ups, created, author, thumbnail, url, permalink, isVideo, numComments
     }
     
 }
