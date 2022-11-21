@@ -13,14 +13,81 @@ struct PostView: View {
     var body: some View {
         ZStack {
             if let urlString = self.viewModel.post.data?.url, let url = URL(string: urlString) {
-                /// If there is an image.
-                AsyncImage(url: url, scale: 1, content: { image in
-                    image.resizable().aspectRatio(contentMode: .fit).task {
-                        self.viewModel.image = image
+                if url.pathExtension == "jpg" || url.pathExtension == "jpeg" || url.pathExtension == "png" {
+                    /// If there is an image.
+                    AsyncImage(url: url, scale: 1, content: { image in
+                        image.resizable().aspectRatio(contentMode: .fit).task {
+                            self.viewModel.image = image
+                        }
+                    }, placeholder: {
+                        Color(UIColor.systemBackground).opacity(0.4)
+                    }).frame(maxWidth: .infinity, maxHeight: .infinity).gesture(
+                        TapGesture(count: 2).onEnded {
+                            /// Double tapped.  Should not trigger single tap.
+                            print("Double tapped.")
+                        }.exclusively(before: TapGesture(count: 1).onEnded {
+                            /// Singled tapped.
+                            self.viewModel.isShowingIsolatedImage = true
+                        })
+                    ).sheet(isPresented: self.$viewModel.isShowingIsolatedImage, content: {
+                        if self.viewModel.post.data?.url != nil, let uiimage = self.viewModel.getUIImage() {
+                            ImageZoomView(image: uiimage)
+                        } else if let uiimage = UIImage(named: "FatCorgi") {
+                            ImageZoomView(image: uiimage)
+                        }
+                    })
+                } else if url.pathExtension == "gif", let thumbnailString = self.viewModel.post.data?.thumbnail, let thumbnail = URL(string: thumbnailString) {
+                    /// If there is a gif.
+                    #warning("Gifs are large.  Slowed loading substantially, so need to trigger load when visible.")
+                    AsyncImage(url: thumbnail, scale: 1, content: { image in
+                        image.resizable().aspectRatio(contentMode: .fit).task {
+                            self.viewModel.image = image
+                        }
+                    }, placeholder: {
+                        Color(UIColor.systemBackground).opacity(0.4)
+                    }).frame(maxWidth: .infinity, maxHeight: .infinity).gesture(
+                        TapGesture(count: 2).onEnded {
+                            /// Double tapped.  Should not trigger single tap.
+                            print("Double tapped.")
+                        }.exclusively(before: TapGesture(count: 1).onEnded {
+                            /// Singled tapped.
+                            self.viewModel.isShowingIsolatedImage = true
+                        })
+                    ).sheet(isPresented: self.$viewModel.isShowingIsolatedImage, content: {
+                        if self.viewModel.post.data?.url != nil, let uiimage = self.viewModel.getUIImage() {
+                            ImageZoomView(image: uiimage)
+                        } else if let uiimage = UIImage(named: "FatCorgi") {
+                            ImageZoomView(image: uiimage)
+                        }
+                    })
+                } else if let thumbnailString = self.viewModel.post.data?.thumbnail, let thumbnail = URL(string: thumbnailString) {
+                    /// If this is not a gif or another standard image.
+                    #warning("Gifs are large.  Slowed loading substantially, so need to trigger load when visible.")
+                    ZStack {
+                        AsyncImage(url: thumbnail, scale: 1, content: { image in
+                            image.resizable().aspectRatio(contentMode: .fit).task {
+                                self.viewModel.image = image
+                            }
+                        }, placeholder: {
+                            Color(UIColor.systemBackground).opacity(0.4)
+                        }).frame(maxWidth: .infinity, maxHeight: .infinity).gesture(
+                            TapGesture(count: 2).onEnded {
+                                /// Double tapped.  Should not trigger single tap.
+                                print("Double tapped.")
+                            }
+                        )
+                        
+                        VStack {
+                            Text("Unsupported Media Type").font(.system(size: 16, weight: .thin)).padding(.bottom, 8).opacity(0.6)
+                            Link(urlString, destination: url)
+                        }.padding(.bottom, 64)
                     }
-                }, placeholder: {
-                    Color(UIColor.systemBackground).opacity(0.4)
-                }).frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    VStack {
+                        Text("Unsupported Media Type").font(.system(size: 16, weight: .thin)).padding(.bottom, 8).opacity(0.6)
+                        Link(urlString, destination: url)
+                    }.padding(.bottom, 64)
+                }
             }
             
             VStack {

@@ -14,6 +14,7 @@ extension PostView {
         @Published var comments: [String] = []
         @Published var image: Image? = nil
         @Published var isLoadingComments: Bool = false
+        @Published var isShowingIsolatedImage: Bool = false
         
         init(post: RedditPost) {
             self.post = post
@@ -57,5 +58,14 @@ extension PostView {
                 DispatchQueue.main.async { self.isLoadingComments = false }
             }).resume()
         }
+        
+        func getUIImage() -> UIImage? {
+            if let urlString = self.post.data?.url, let url = URL(string: urlString), let data = try? Data(contentsOf: url) {
+                return UIImage(data: data)
+            } else {
+                return nil
+            }
+        }
+        
     }
 }

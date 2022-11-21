@@ -21,6 +21,7 @@
 		4C6434B3292ADF0E00A17701 /* Reddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6434B2292ADF0E00A17701 /* Reddit.swift */; };
 		4C6434B7292B049F00A17701 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6434B6292B049F00A17701 /* PostView.swift */; };
 		4C6434B9292B0B9F00A17701 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6434B8292B0B9F00A17701 /* PostViewModel.swift */; };
+		4C6434BB292B129600A17701 /* ImageZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6434BA292B129600A17701 /* ImageZoomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		4C6434B2292ADF0E00A17701 /* Reddit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
 		4C6434B6292B049F00A17701 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		4C6434B8292B0B9F00A17701 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		4C6434BA292B129600A17701 /* ImageZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			children = (
 				4C6434AF292ACED000A17701 /* FeedView.swift */,
 				4C6434AD292ACEB300A17701 /* FeedViewModel.swift */,
+				4C6434BA292B129600A17701 /* ImageZoomView.swift */,
 				4C6434B6292B049F00A17701 /* PostView.swift */,
 				4C6434B8292B0B9F00A17701 /* PostViewModel.swift */,
 			);
@@ -188,6 +191,8 @@
 			dependencies = (
 			);
 			name = memedit;
+			packageProductDependencies = (
+			);
 			productName = memedit;
 			productReference = 4C643479292ACCF500A17701 /* memedit.app */;
 			productType = "com.apple.product-type.application";
@@ -260,6 +265,8 @@
 				Base,
 			);
 			mainGroup = 4C643470292ACCF500A17701;
+			packageReferences = (
+			);
 			productRefGroup = 4C64347A292ACCF500A17701 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -311,6 +318,7 @@
 				4C6434B9292B0B9F00A17701 /* PostViewModel.swift in Sources */,
 				4C6434B0292ACED000A17701 /* FeedView.swift in Sources */,
 				4C64347D292ACCF500A17701 /* memeditApp.swift in Sources */,
+				4C6434BB292B129600A17701 /* ImageZoomView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
