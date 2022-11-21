@@ -10,11 +10,13 @@ import Foundation
 extension FeedView {
     // MARK:- FeedView's ViewModel
     @MainActor class ViewModel: ObservableObject {
-        @Published var subredditName: String = "memes"
+        @Published var subredditName: String = "EarthPorn"
         @Published private(set) var subredditPosts: [RedditPost] = []
         @Published private(set) var originalSubredditPosts: [RedditPost] = [] /// The original order of the posts from Reddit.
         @Published var errorMessage: String = ""
         @Published var isLoading: Bool = true
+        @Published var proposedSubredditName: String = ""
+        @Published var isEditingSubredditName: Bool = false
         
         init() {
             fetchJSON()
@@ -35,6 +37,10 @@ extension FeedView {
             
             let config = URLSessionConfiguration.default
             if shouldUseCache == false { config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData }
+            
+            /// Remove existing data.
+            self.subredditPosts = []
+            self.originalSubredditPosts = []
             
             let session = URLSession.init(configuration: config)
             session.dataTask(with: url, completionHandler: { (data, response, error) in
@@ -69,6 +75,20 @@ extension FeedView {
                 
                 DispatchQueue.main.async { self.isLoading = false }
             }).resume()
+        }
+        
+        func changeSubreddit(name: String? = nil) {
+            self.subredditName = self.proposedSubredditName
+            if let newSubredditName = name {
+                self.subredditName = newSubredditName
+            }
+            self.fetchJSON()
+            self.isEditingSubredditName = false
+            self.proposedSubredditName = ""
+        }
+        
+        func cancelChangeSubreddit() {
+            self.isEditingSubredditName = false
         }
     }
 }

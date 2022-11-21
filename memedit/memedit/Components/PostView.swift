@@ -91,7 +91,6 @@ struct PostView: View {
             }
             
             VStack {
-                Text(.init("r/\(self.viewModel.post.data?.subreddit?.capitalized ?? "*[subreddit missing]*")")).font(.system(size: 20, weight: .medium))
                 Spacer()
                 HStack(alignment: .bottom, spacing: 0) {
                     VStack(alignment: .leading, spacing: 8) {
