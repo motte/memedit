@@ -12,7 +12,7 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            FeedView()
+            FeedView().frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }

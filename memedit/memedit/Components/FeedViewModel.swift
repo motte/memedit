@@ -12,6 +12,7 @@ extension FeedView {
     @MainActor class ViewModel: ObservableObject {
         @Published var subredditName: String = "memes"
         @Published private(set) var subredditPosts: [RedditPost] = []
+        @Published private(set) var originalSubredditPosts: [RedditPost] = [] /// The original order of the posts from Reddit.
         @Published var errorMessage: String = ""
         @Published var isLoading: Bool = true
         
@@ -44,19 +45,22 @@ extension FeedView {
                             decoder.keyDecodingStrategy = .convertFromSnakeCase
                             let redditModel = try decoder.decode(Reddit.self, from: json)
                             DispatchQueue.main.async {
+                                /// Display the posts in the view.
                                 self.subredditPosts = redditModel.data.children
+                                self.originalSubredditPosts = redditModel.data.children
                             }
-//                            print(redditModel.data.children.first?.data.first?.name)
                         } catch {
                             print("Error: The data from Reddit is not as expected.  Please contact us for support.")
                         }
                     } else {
+                        /// There was no data.  Not necessarily an error.
                         DispatchQueue.main.async {
                             self.errorMessage = ""
                         }
                         print("There was no data from \(url.absoluteString).")
                     }
                 } else {
+                    /// There was an error in the process of fetching data.  It could be an invalid URL, lost connection, etc.  Look at the error code.
                     DispatchQueue.main.async {
                         self.errorMessage = "Failed to fetch the listing from Reddit.  Please try again."
                     }
