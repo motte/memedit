@@ -19,6 +19,8 @@
 		4C6434AE292ACEB300A17701 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6434AD292ACEB300A17701 /* FeedViewModel.swift */; };
 		4C6434B0292ACED000A17701 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6434AF292ACED000A17701 /* FeedView.swift */; };
 		4C6434B3292ADF0E00A17701 /* Reddit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6434B2292ADF0E00A17701 /* Reddit.swift */; };
+		4C6434B7292B049F00A17701 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6434B6292B049F00A17701 /* PostView.swift */; };
+		4C6434B9292B0B9F00A17701 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6434B8292B0B9F00A17701 /* PostViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		4C6434AD292ACEB300A17701 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		4C6434AF292ACED000A17701 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		4C6434B2292ADF0E00A17701 /* Reddit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reddit.swift; sourceTree = "<group>"; };
+		4C6434B6292B049F00A17701 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		4C6434B8292B0B9F00A17701 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,8 @@
 			children = (
 				4C6434AF292ACED000A17701 /* FeedView.swift */,
 				4C6434AD292ACEB300A17701 /* FeedViewModel.swift */,
+				4C6434B6292B049F00A17701 /* PostView.swift */,
+				4C6434B8292B0B9F00A17701 /* PostViewModel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -298,9 +304,11 @@
 			files = (
 				4C6434AE292ACEB300A17701 /* FeedViewModel.swift in Sources */,
 				4C643486292ACCF600A17701 /* Persistence.swift in Sources */,
+				4C6434B7292B049F00A17701 /* PostView.swift in Sources */,
 				4C643489292ACCF600A17701 /* memedit.xcdatamodeld in Sources */,
 				4C6434B3292ADF0E00A17701 /* Reddit.swift in Sources */,
 				4C64347F292ACCF500A17701 /* ContentView.swift in Sources */,
+				4C6434B9292B0B9F00A17701 /* PostViewModel.swift in Sources */,
 				4C6434B0292ACED000A17701 /* FeedView.swift in Sources */,
 				4C64347D292ACCF500A17701 /* memeditApp.swift in Sources */,
 			);
